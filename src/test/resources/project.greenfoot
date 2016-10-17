@@ -1,6 +1,8 @@
-class.bh.greenfoot.runner.fixture.Fox.image=foxyfauna.png
+# You can also provide the project.greenfoot class as provided by the greenfoot IDE
+# Here the file was trimmed to the minimum in order to associate images to the classes
 class.bh.greenfoot.runner.fixture.Apple.image=apple.png
+class.bh.greenfoot.runner.fixture.Fox.image=foxyfauna.png
 class.bh.greenfoot.runner.fixture.Garden.image=grass.png
-class.bh.greenfoot.runner.fixture.Water.image=water.png
 class.bh.greenfoot.runner.fixture.Hedgehog.image=hedgehog.png
 class.bh.greenfoot.runner.fixture.Poison.image=mushroom.png
+class.bh.greenfoot.runner.fixture.Water.image=water.png

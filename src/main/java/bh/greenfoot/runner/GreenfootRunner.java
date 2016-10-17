@@ -60,8 +60,8 @@ public abstract class GreenfootRunner {
                 }
 
             });
-        } catch (InvocationTargetException | InterruptedException var4) {
-            var4.printStackTrace();
+        } catch (InvocationTargetException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -96,43 +96,59 @@ public abstract class GreenfootRunner {
     protected abstract Configuration getConfiguration();
 
     protected static final class Configuration {
-        final String projectName;
-        final Class<? extends World> worldClass;
-        final boolean lockScenario;
-        final boolean hideControls;
+        private final Class<? extends World> worldClass;
+        private final String projectName;
+        private final boolean lockScenario;
+        private final boolean hideControls;
 
-        private Configuration() {
-            projectName = "No title";
-            worldClass = World.class;
-            lockScenario = false;
-            hideControls = false;
-        }
-
-        private Configuration(final String projectName, final Class<? extends World> worldClass, final boolean lockScenario, final boolean hideControls) {
-            this.projectName = projectName;
+        private Configuration(final Class<? extends World> worldClass, final String projectName, final boolean lockScenario, final boolean hideControls) {
             this.worldClass = worldClass;
+            this.projectName = projectName;
             this.lockScenario = lockScenario;
             this.hideControls = hideControls;
         }
 
-        public static Configuration prepare() {
-            return new Configuration();
+        /**
+         * Creates the configuration for this specific {@code worldClass}.
+         *
+         * @param worldClass the class used to create the world in your application.
+         * @return the new configuration.
+         */
+        public static Configuration forWorld(final Class<? extends World> worldClass) {
+            return new Configuration(worldClass, "No title", false, false);
         }
 
+        /**
+         * Configures a project name to be shown in the title of the window.
+         * If not specified it'll be set to "No title".
+         *
+         * @param projectName the name of the project that will show in the title of the window.
+         * @return the new configuration.
+         */
         public Configuration projectName(final String projectName) {
-            return new Configuration(projectName, worldClass, lockScenario, hideControls);
+            return new Configuration(worldClass, projectName, lockScenario, hideControls);
         }
 
-        public Configuration worldClass(final Class<? extends World> worldClass) {
-            return new Configuration(projectName, worldClass, lockScenario, hideControls);
-        }
-
+        /**
+         * Indicates if the scenario should be locked or not.
+         * If not specified it'll allow the scenario to be run step-by-step, and to select the scenario speed.
+         *
+         * @param lockScenario if the scenario should be locked or not.
+         * @return the new configuration.
+         */
         public Configuration lockScenario(final boolean lockScenario) {
-            return new Configuration(projectName, worldClass, lockScenario, hideControls);
+            return new Configuration(worldClass, projectName, lockScenario, hideControls);
         }
 
+        /**
+         * Indicates if the controls should be hidden.
+         * If not specified it'll show the controls to allow the scenario run and reset.
+         *
+         * @param hideControls if the controls should be hidden.
+         * @return the new configuration.
+         */
         public Configuration hideControls(final boolean hideControls) {
-            return new Configuration(projectName, worldClass, lockScenario, hideControls);
+            return new Configuration(worldClass, projectName, lockScenario, hideControls);
         }
     }
 }
