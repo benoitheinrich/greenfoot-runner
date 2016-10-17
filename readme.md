@@ -64,3 +64,7 @@ This will automatically create the instance of the runner when the application i
 Lastly you need to indicate the world class used by your project.
 You can also configure additional information like project name, but this is optional.
 To see what can be configured you can check the `GreenfootRunner.Configuration` class for the details.
+
+# Example project
+
+An example project can be found there: [greenfoot-runner-example](https://github.com/benoitheinrich/greenfoot-runner-example)
