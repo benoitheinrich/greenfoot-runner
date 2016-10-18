@@ -18,8 +18,14 @@ import java.util.Properties;
  * A Runner class for a greenfoot project.
  */
 public abstract class GreenfootRunner {
+    private static Configuration mainConfiguration;
+    private static Class<? extends GreenfootRunner> mainClass;
     private String scenarioName;
-    protected static Class<? extends GreenfootRunner> mainClass;
+
+    public static void bootstrap(final Class<? extends GreenfootRunner> runnerClass, final Configuration configuration) {
+        mainClass = runnerClass;
+        mainConfiguration = configuration;
+    }
 
     public static void main(String[] args) {
         try {
@@ -76,7 +82,7 @@ public abstract class GreenfootRunner {
                     p.load((InputStream) is);
                 }
 
-                final Configuration configuration = getConfiguration();
+                final Configuration configuration = mainConfiguration;
                 p.put("project.name", configuration.projectName);
                 p.put("main.class", configuration.worldClass.getName());
                 p.put("scenario.lock", "" + configuration.lockScenario);
@@ -93,9 +99,7 @@ public abstract class GreenfootRunner {
         }
     }
 
-    protected abstract Configuration getConfiguration();
-
-    protected static final class Configuration {
+    public static final class Configuration {
         private final Class<? extends World> worldClass;
         private final String projectName;
         private final boolean lockScenario;
