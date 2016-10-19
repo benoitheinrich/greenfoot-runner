@@ -1,10 +1,3 @@
-/**
- * COPYRIGHT (c) 2013 VOCADO, LLC.  ALL RIGHTS RESERVED.  THIS SOFTWARE CONTAINS
- * TRADE SECRETS AND/OR CONFIDENTIAL INFORMATION PROPRIETARY TO VOCADO, LLC AND/OR
- * ITS LICENSORS. ACCESS TO AND USE OF THIS INFORMATION IS STRICTLY LIMITED AND
- * CONTROLLED BY VOCADO, LLC.  THIS SOFTWARE MAY NOT BE COPIED, MODIFIED, DISTRIBUTED,
- * DISPLAYED, DISCLOSED OR USED IN ANY WAY NOT EXPRESSLY AUTHORIZED BY VOCADO, LLC IN WRITING.
- */
 package bh.greenfoot.configurator;
 
 import java.io.BufferedReader;
@@ -37,19 +30,17 @@ public class GreenfootConfigurator {
         }
     }
 
-    public void start(final InputStream in, final PrintStream out) throws IOException {
+    void start(final InputStream in, final PrintStream out) throws IOException {
         out.println("Welcome to the Greenfoot Runner configurator!");
         out.println("");
         out.println("Please follow instructions below.");
         final BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        //final Scanner scanner = new Scanner(in);
-
 
         final File projectPath = readProjectPath(reader, out);
-        final String projectName;
-        final String projectDescription;
-        final String groupName;
-        final String runnerName;
+        //final String projectName;
+        //final String projectDescription;
+        //final String groupName;
+        //final String runnerName;
     }
 
     private File readProjectPath(final BufferedReader scanner, final PrintStream out) throws IOException {
