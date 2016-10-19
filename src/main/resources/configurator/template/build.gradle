@@ -1,5 +1,5 @@
-group 'bh.greenfoot'
-version '3.0.4-SNAPSHOT'
+group '${group}'
+version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
@@ -7,25 +7,19 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "io.javaslang:javaslang:2.0.4"
-
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    testCompile group: 'org.easytesting', name: 'fest-assert-core', version: '2.0M10'
-
 }
-
 
 //create a single Jar with all dependencies
 task dist(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
-                'Implementation-Version': version
+                'Implementation-Version': version,
+                'Main-Class': '${runnerName}'
     }
     baseName = project.name + '-dist'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
